@@ -20,9 +20,9 @@ module.exports = {
       jsx: true
     },
     ecmaVersion: 2018,
-    sourceType: 'module'
-    extends: "standard",
-	parser: "babel-eslint"
+    sourceType: 'module',
+    extends: 'standard',
+    parser: 'babel-eslint'
   },
   plugins: ['react', 'prettier'],
   rules: {

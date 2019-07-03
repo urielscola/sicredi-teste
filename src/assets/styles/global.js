@@ -19,7 +19,8 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     margin: 0;
-    background-color: ${theme.offWhite};
+    background-color: ${theme.purple};
+    /* border: 10px solid #632f7d; */
   }
 
   main {
