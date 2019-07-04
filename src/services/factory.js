@@ -1,7 +1,7 @@
 const BASE_API_URL = process.env.REACT_APP_API_URL;
 
 export default ({ instance, config, resourceName }) => ({
-  list: data => {
+  list: () => {
     const { headers } = config();
 
     return instance({
@@ -29,7 +29,7 @@ export default ({ instance, config, resourceName }) => ({
       data
     });
   },
-  put: (data, id) => {
+  put: ({ data, id }) => {
     const { headers } = config();
 
     return instance({
@@ -37,6 +37,15 @@ export default ({ instance, config, resourceName }) => ({
       url: `${BASE_API_URL}${resourceName}/${id}`,
       headers,
       data
+    });
+  },
+  delete: id => {
+    const { headers } = config();
+
+    return instance({
+      method: 'DELETE',
+      url: `${BASE_API_URL}${resourceName}/${id}`,
+      headers
     });
   }
 });

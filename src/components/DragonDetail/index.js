@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { Container } from './styles';
 import Form from '../Form';
@@ -6,6 +7,7 @@ import Loader from '../Loader';
 import InputField from '../InputField';
 import Button from '../Button';
 import useForm from '../../helpers/useForm';
+import { now, toDate } from '../../helpers/datetime';
 import { withDragons } from '../../containers';
 
 const DragonDetail = ({
@@ -13,8 +15,13 @@ const DragonDetail = ({
   resourceId,
   detail,
   loading,
+  error,
   getDragonDetail,
-  getDragonDetailSuccess
+  getDragonDetailSuccess,
+  createDragon,
+  updateDragon,
+  deleteDragon,
+  ...props
 }) => {
   const [values, handleChange, setInitialValues] = useForm({
     name: '',
@@ -23,18 +30,49 @@ const DragonDetail = ({
   });
 
   useEffect(() => {
-    if (!detail && isEditing) getDragonDetail(resourceId);
-    if (detail) setInitialValues(detail);
-  }, [detail, setInitialValues, getDragonDetail, isEditing, resourceId]);
+    if (!detail && isEditing && !error) getDragonDetail(resourceId);
+    if (detail && !values.histories) setInitialValues(detail);
+  }, [
+    detail,
+    setInitialValues,
+    getDragonDetail,
+    isEditing,
+    resourceId,
+    values.histories,
+    error
+  ]);
 
   useEffect(() => {
     return () => getDragonDetailSuccess(null);
   }, [getDragonDetailSuccess]);
 
+  const handleSubmit = () => {
+    if (isEditing) {
+      updateDragon({ data: { ...values }, id: resourceId });
+    } else {
+      createDragon({ ...values, createdAt: now() });
+    }
+
+    return props.history.goBack();
+  };
+
+  const handleDelete = e => {
+    e.preventDefault();
+    deleteDragon(resourceId);
+    return props.history.goBack();
+  };
+
+  const handleBack = e => {
+    e.preventDefault();
+    return props.history.goBack();
+  };
+
   if (loading && !detail) return <Loader />;
+  if (error) return <p>Não foi possível encontrar o dragão.</p>;
   return (
     <Container>
       <Form
+        onSubmit={handleSubmit}
         header={
           <h2>Você está {isEditing ? 'editando' : 'criando'} um dragão.</h2>
         }
@@ -54,19 +92,24 @@ const DragonDetail = ({
               value={values.type}
               onChange={handleChange}
             />
-            <InputField
-              name="createdAt"
-              label="Data de criação do Dragão *"
-              placeholder="Digite a data de criação do dragão aqui"
-              value={values.createdAt}
-              onChange={handleChange}
-            />
+            {isEditing && (
+              <InputField
+                name="createdAt"
+                disabled
+                label="Criado em"
+                value={toDate(values.createdAt)}
+                onChange={handleChange}
+              />
+            )}
           </>
         }
         submit={
           <>
             <Button primary label="Salvar" loading={loading} />
-            <Button secundary label="Voltar" />
+            {isEditing && (
+              <Button danger label="Excluir" onClick={handleDelete} />
+            )}
+            <Button secundary label="Voltar" onClick={handleBack} />
           </>
         }
       />
@@ -74,4 +117,7 @@ const DragonDetail = ({
   );
 };
 
-export default compose(withDragons)(DragonDetail);
+export default compose(
+  withDragons,
+  withRouter
+)(DragonDetail);

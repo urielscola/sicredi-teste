@@ -5,12 +5,12 @@ import UserInfo from './partials/UserInfo';
 import { withUser } from '../../containers';
 import Logo from '../Logo';
 
-const Header = ({ isLogged, user }) => {
+const Header = ({ isLogged, user, logout }) => {
   return (
     <GridContainer>
-      <Container isLogged>
+      <Container isLogged={isLogged}>
         <Logo />
-        {isLogged && <UserInfo user={user} />}
+        {isLogged && <UserInfo user={user} logout={logout} />}
       </Container>
     </GridContainer>
   );

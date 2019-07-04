@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, UserAvatar, UserActions } from './styles';
 
-const UserInfo = ({ user }) => {
+const UserInfo = ({ user, logout }) => {
   return (
     <Container>
       <UserActions>
         <p>Olá, {user.username}!</p>
-        <Link to="/logout">sair</Link>
+        <Link to="/logout" onClick={() => logout()}>
+          sair
+        </Link>
       </UserActions>
       <UserAvatar>
         <img src="http://placehold.it/50x50" alt={user.username} />

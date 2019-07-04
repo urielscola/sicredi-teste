@@ -17,6 +17,9 @@ export const CustomButton = styled.button`
   color: ${({ theme }) => theme.white};
   text-transform: uppercase;
   border-radius: 6px;
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: 700;
 
   ${({ primary }) =>
     primary &&
@@ -35,6 +38,16 @@ export const CustomButton = styled.button`
 
       &:hover {
         background-color: #999;
+      }
+    `};
+
+  ${({ danger }) =>
+    danger &&
+    css`
+      background-color: ${({ theme }) => theme.red};
+
+      &:hover {
+        background-color: #c54744;
       }
     `};
 `;

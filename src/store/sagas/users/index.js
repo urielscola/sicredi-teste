@@ -8,7 +8,7 @@ export function* login({ payload }) {
   try {
     yield call(UserService.login, { username, password });
     yield put(UserActions.loginSuccess({ username }));
-    setSession({ username });
+    yield setSession({ username });
     window.location.href = '/';
   } catch (err) {
     yield put(UserActions.loginFailure());
@@ -16,8 +16,7 @@ export function* login({ payload }) {
 }
 
 export function* logout() {
-  yield put(UserActions.logout());
-  clearSession();
+  yield clearSession();
 }
 
 export default function* usersSaga() {

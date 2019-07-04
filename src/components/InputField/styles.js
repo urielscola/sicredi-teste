@@ -22,6 +22,11 @@ export const Input = styled.input`
     border: 1px solid #777;
   }
 
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #e8e6e6;
+  }
+
   ${({ error }) =>
     error &&
     css`

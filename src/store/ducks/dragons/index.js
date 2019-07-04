@@ -1,11 +1,14 @@
 export const Types = {
-  GET_DRAGONS: '@books/GET_DRAGONS',
-  GET_DRAGONS_SUCCESS: '@books/GET_DRAGONS_SUCCESS',
-  GET_DRAGONS_FAILURE: '@books/GET_DRAGONS_FAILURE',
-  SET_DRAGON_DETAIL: '@books/SET_DRAGON_DETAIL',
-  GET_DRAGON_DETAIL: '@books/GET_DRAGON_DETAIL',
-  GET_DRAGON_DETAIL_SUCCESS: '@books/GET_DRAGON_DETAIL_SUCCESS',
-  GET_DRAGON_DETAIL_FAILURE: '@books/GET_DRAGON_DETAIL_FAILURE'
+  GET_DRAGONS: '@dragons/GET_DRAGONS',
+  GET_DRAGONS_SUCCESS: '@dragons/GET_DRAGONS_SUCCESS',
+  GET_DRAGONS_FAILURE: '@dragons/GET_DRAGONS_FAILURE',
+  SET_DRAGON_DETAIL: '@dragons/SET_DRAGON_DETAIL',
+  GET_DRAGON_DETAIL: '@dragons/GET_DRAGON_DETAIL',
+  GET_DRAGON_DETAIL_SUCCESS: '@dragons/GET_DRAGON_DETAIL_SUCCESS',
+  GET_DRAGON_DETAIL_FAILURE: '@dragons/GET_DRAGON_DETAIL_FAILURE',
+  UPDATE_DRAGON: '@dragons/UPDATE_DRAGON',
+  CREATE_DRAGON: '@dragons/CREATE_DRAGON',
+  DELETE_DRAGON: '@dragons/DELETE_DRAGON'
 };
 
 export const Creators = {
@@ -20,8 +23,11 @@ export const Creators = {
     type: Types.GET_DRAGON_DETAIL_SUCCESS,
     payload
   }),
-  getDragonDetailsFailure: () => ({ type: Types.GET_DRAGON_DETAILS_FAILURE }),
-  setDragonDetail: payload => ({ type: Types.SET_DRAGON_DETAIL, payload })
+  getDragonDetailsFailure: () => ({ type: Types.GET_DRAGON_DETAIL_FAILURE }),
+  setDragonDetail: payload => ({ type: Types.SET_DRAGON_DETAIL, payload }),
+  updateDragon: payload => ({ type: Types.UPDATE_DRAGON, payload }),
+  createDragon: payload => ({ type: Types.CREATE_DRAGON, payload }),
+  deleteDragon: payload => ({ type: Types.DELETE_DRAGON, payload })
 };
 
 export const INITIAL_STATE = {

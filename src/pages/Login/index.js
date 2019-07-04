@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import Head from '../../components/Head';
 import { GridContainer } from '../../components/Grid';
 import Form from '../../components/Form';
@@ -7,10 +8,12 @@ import Button from '../../components/Button';
 
 import { Container } from './styles';
 import useForm from '../../helpers/useForm';
+import { isAuthenticated } from '../../helpers/auth';
 import { withUser } from '../../containers';
 
 const Login = ({ loginStart, setError, loading, error }) => {
   const [values, handleChange] = useForm({ username: '', password: '' });
+  if (isAuthenticated()) return <Redirect to="/" />;
 
   return (
     <GridContainer>

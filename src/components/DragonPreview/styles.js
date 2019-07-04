@@ -15,14 +15,14 @@ export const Container = styled.div`
   }
 
   @media (min-width: 992px) {
-    width: 29%;
-    margin-right: 6.5%;
+    width: 22%;
+    margin-right: 4%;
 
     &:nth-of-type(2n) {
-      margin-right: 6.5%;
+      margin-right: 4%;
     }
 
-    &:nth-of-type(3n) {
+    &:nth-of-type(4n) {
       margin-right: 0;
     }
   }
@@ -42,5 +42,6 @@ export const DragonFigure = styled.div`
 export const DragonName = styled.h3`
   margin-bottom: 10px;
   font-size: 16px;
+  font-weight: 700;
   color: ${({ theme }) => theme.fontPrimary};
 `;

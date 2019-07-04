@@ -6,8 +6,10 @@ export const GridContainer = styled.div`
   display: block;
   margin: auto;
   padding: 0 20px;
+  padding-bottom: 50px;
 
   @media (min-width: 992px) {
-    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 `;
