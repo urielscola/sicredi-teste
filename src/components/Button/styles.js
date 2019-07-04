@@ -1,6 +1,13 @@
 import styled, { css } from 'styled-components/macro';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  position: relative;
+  margin-bottom: 10px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+`;
 
 export const CustomButton = styled.button`
   border: none;
@@ -18,6 +25,16 @@ export const CustomButton = styled.button`
 
       &:hover {
         background-color: #7aa921;
+      }
+    `};
+
+  ${({ secundary }) =>
+    secundary &&
+    css`
+      background-color: #ccc;
+
+      &:hover {
+        background-color: #999;
       }
     `};
 `;

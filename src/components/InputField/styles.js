@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 
 export const Container = styled.div`
   margin-bottom: 15px;
@@ -21,6 +21,12 @@ export const Input = styled.input`
   &:focus {
     border: 1px solid #777;
   }
+
+  ${({ error }) =>
+    error &&
+    css`
+      border: 1px solid ${({ theme }) => theme.red};
+    `};
 `;
 
 export const Label = styled.label`

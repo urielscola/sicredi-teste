@@ -27,6 +27,7 @@ module.exports = {
   plugins: ['react', 'prettier'],
   rules: {
     'react/forbid-prop-types': 0,
+    'react/prop-types': 0,
     'import/no-extraneous-dependencies': 0,
     'import/prefer-default-export': 0,
     'react/jsx-filename-extension': 0,

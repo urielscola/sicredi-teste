@@ -8,7 +8,8 @@ const InputField = ({
   label,
   required = true,
   placeholder,
-  onChange
+  onChange,
+  ...props
 }) => {
   return (
     <Container>
@@ -21,6 +22,7 @@ const InputField = ({
         required={required}
         placeholder={placeholder}
         onChange={onChange}
+        {...props}
       />
     </Container>
   );

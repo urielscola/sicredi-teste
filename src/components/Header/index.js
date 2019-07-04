@@ -1,17 +1,19 @@
 import React from 'react';
 import { GridContainer } from '../Grid';
 import { Container } from './styles';
-
+import UserInfo from './partials/UserInfo';
+import { withUser } from '../../containers';
 import Logo from '../Logo';
 
-const Header = () => {
+const Header = ({ isLogged, user }) => {
   return (
     <GridContainer>
-      <Container>
+      <Container isLogged>
         <Logo />
+        {isLogged && <UserInfo user={user} />}
       </Container>
     </GridContainer>
   );
 };
 
-export default Header;
+export default withUser(Header);

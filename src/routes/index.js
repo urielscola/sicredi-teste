@@ -5,7 +5,7 @@ import Loadable from 'react-loadable';
 import PrivateRoute from './PrivateRoute';
 import Loader from '../components/Loader';
 
-import { deleteToken } from '../helpers/auth';
+import { clearSession } from '../helpers/auth';
 
 const lazyLoadedPage = path =>
   Loadable({
@@ -19,14 +19,14 @@ const Routes = () => (
     <Route exact path="/login" component={lazyLoadedPage('Login')} />
     <PrivateRoute
       exact
-      path="/dragon/:categoryId"
+      path="/dragon/:resourceId"
       component={lazyLoadedPage('Detail')}
     />
     <PrivateRoute
       exact
       path="/logout"
       component={({ location }) => {
-        deleteToken();
+        clearSession();
         return (
           <Redirect to={{ pathname: '/login', state: { from: location } }} />
         );

@@ -5,7 +5,7 @@ export const Container = styled.form`
   padding: 25px;
   background-color: ${({ theme }) => theme.white};
   border-radius: 6px;
-  max-width: 500px;
+  max-width: ${({ maxWidth }) => maxWidth || 'none'};
   flex-grow: 1;
   ${boxShadow};
 `;
@@ -43,4 +43,12 @@ export const FormHeader = styled.div`
 
 export const FormBody = styled.div`
   margin: 25px 0;
+`;
+
+export const Error = styled.p`
+  color: ${({ theme }) => theme.red};
+  font-size: 12px;
+  margin-top: 25px;
+  text-align: center;
+  display: block;
 `;

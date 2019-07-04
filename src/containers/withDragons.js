@@ -18,6 +18,7 @@ export default function withDragons(Composed) {
     componentDidMount() {
       this.props.getDragons();
     }
+
     render() {
       return <Composed {...this.props} />;
     }

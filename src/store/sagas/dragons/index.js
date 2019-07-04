@@ -15,9 +15,9 @@ export function* getDragons() {
   }
 }
 
-export function* getDetail({ id }) {
+export function* getDragonDetail({ payload }) {
   try {
-    const { data } = yield call(DragonsService.get, { id });
+    const { data } = yield call(DragonsService.get, { id: payload });
     yield put(DragonsActions.getDragonDetailSuccess(data));
   } catch (err) {
     yield put(DragonsActions.getDragonDetailsFailure());
@@ -27,6 +27,6 @@ export function* getDetail({ id }) {
 export default function* booksSaga() {
   yield all([
     takeLatest(DragonsTypes.GET_DRAGONS, getDragons),
-    takeLatest(DragonsTypes.GET_DRAGON_DETAIL, getDetail)
+    takeLatest(DragonsTypes.GET_DRAGON_DETAIL, getDragonDetail)
   ]);
 }

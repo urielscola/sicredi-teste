@@ -7,8 +7,9 @@ import Button from '../../components/Button';
 
 import { Container } from './styles';
 import useForm from '../../helpers/useForm';
+import { withUser } from '../../containers';
 
-const Login = () => {
+const Login = ({ loginStart, setError, loading, error }) => {
   const [values, handleChange] = useForm({ username: '', password: '' });
 
   return (
@@ -16,6 +17,8 @@ const Login = () => {
       <Container>
         <Head title="Login" />
         <Form
+          maxWidth="500px"
+          onSubmit={() => loginStart({ ...values })}
           header={
             <>
               <h2>Bem-vindo novamente!</h2>
@@ -30,6 +33,8 @@ const Login = () => {
                 placeholder="Digite seu nome de usuário aqui"
                 value={values.username}
                 onChange={handleChange}
+                error={error}
+                onFocus={() => setError(false)}
               />
               <InputField
                 name="password"
@@ -38,14 +43,17 @@ const Login = () => {
                 placeholder="Digite sua senha aqui"
                 value={values.password}
                 onChange={handleChange}
+                error={error}
+                onFocus={() => setError(false)}
               />
             </>
           }
-          submit={<Button primary label="Entrar" />}
+          submit={<Button primary label="Entrar" loading={loading} />}
+          error={error}
         />
       </Container>
     </GridContainer>
   );
 };
 
-export default Login;
+export default withUser(Login);

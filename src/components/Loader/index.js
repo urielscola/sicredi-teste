@@ -17,3 +17,5 @@ const Loader = () => (
 );
 
 export default Loader;
+
+export { SmallLoader } from './styles';
