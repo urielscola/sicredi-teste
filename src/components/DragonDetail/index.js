@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { compose } from 'redux';
 import { Container } from './styles';
 import Form from '../Form';
+import Loader from '../Loader';
 import InputField from '../InputField';
 import Button from '../Button';
 import useForm from '../../helpers/useForm';
+import { withDragons } from '../../containers';
 
-const DragonDetail = ({ isEditing, detail, loading }) => {
-  const [values, handleChange] = useForm(
-    isEditing ? detail : { name: '', type: '', createdAt: '' }
-  );
+const DragonDetail = ({
+  isEditing,
+  resourceId,
+  detail,
+  loading,
+  getDragonDetail,
+  getDragonDetailSuccess
+}) => {
+  const [values, handleChange, setInitialValues] = useForm({
+    name: '',
+    type: '',
+    createdAt: ''
+  });
 
+  useEffect(() => {
+    if (!detail && isEditing) getDragonDetail(resourceId);
+    if (detail) setInitialValues(detail);
+  }, [detail, setInitialValues, getDragonDetail, isEditing, resourceId]);
+
+  useEffect(() => {
+    return () => getDragonDetailSuccess(null);
+  }, [getDragonDetailSuccess]);
+
+  if (loading && !detail) return <Loader />;
   return (
     <Container>
       <Form
@@ -52,4 +74,4 @@ const DragonDetail = ({ isEditing, detail, loading }) => {
   );
 };
 
-export default DragonDetail;
+export default compose(withDragons)(DragonDetail);
