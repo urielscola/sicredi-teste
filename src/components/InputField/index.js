@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, Input, Label } from './styles';
 
 const InputField = ({
@@ -29,3 +30,12 @@ const InputField = ({
 };
 
 export default InputField;
+
+InputField.propTypes = {
+  value: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func.isRequired
+};

@@ -2,9 +2,10 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Creators as DragonsActions } from '../store/ducks/dragons';
+import { getDragonList } from '../store/ducks/dragons/selectors';
 
 const mapStateToProps = state => ({
-  list: state.dragons.list,
+  list: getDragonList(state),
   loading: state.dragons.loading,
   error: state.dragons.error,
   detail: state.dragons.detail

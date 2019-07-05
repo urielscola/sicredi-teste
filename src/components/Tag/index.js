@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, Label, Value } from './styles';
 
 const Tag = ({ label, value }) => {
@@ -11,3 +12,8 @@ const Tag = ({ label, value }) => {
 };
 
 export default Tag;
+
+Tag.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired
+};

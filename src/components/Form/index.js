@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, FormHeader, FormBody, Error } from './styles';
 
 const Form = ({ onSubmit, header, fields, submit, error, ...props }) => {
@@ -17,3 +18,11 @@ const Form = ({ onSubmit, header, fields, submit, error, ...props }) => {
 };
 
 export default Form;
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  header: PropTypes.node.isRequired,
+  fields: PropTypes.node.isRequired,
+  submit: PropTypes.node.isRequired,
+  error: PropTypes.bool
+};

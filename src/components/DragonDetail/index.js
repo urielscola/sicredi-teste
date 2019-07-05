@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { Container } from './styles';
@@ -10,7 +11,7 @@ import useForm from '../../helpers/useForm';
 import { now, toDate } from '../../helpers/datetime';
 import { withDragons } from '../../containers';
 
-const DragonDetail = ({
+export const DragonDetail = ({
   isEditing,
   resourceId,
   detail,
@@ -121,3 +122,16 @@ export default compose(
   withDragons,
   withRouter
 )(DragonDetail);
+
+DragonDetail.propTypes = {
+  isEditing: PropTypes.bool.isRequired,
+  resourceId: PropTypes.string.isRequired,
+  detail: PropTypes.object,
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
+  getDragonDetail: PropTypes.func,
+  getDragonDetailSuccess: PropTypes.func,
+  createDragon: PropTypes.func,
+  updateDragon: PropTypes.func,
+  deleteDragon: PropTypes.func
+};

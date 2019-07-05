@@ -32,6 +32,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'react/jsx-filename-extension': 0,
     'react/react-in-jsx-scope': 0,
+    'react/require-default-props': 0,
     'class-methods-use-this': 0,
     'no-unused-expressions': ['error', { allowTaggedTemplates: true }],
     'no-underscore-dangle': [
