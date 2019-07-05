@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch =>
 export default function withDragons(Composed) {
   class withDragonsComponent extends PureComponent {
     componentDidMount() {
-      this.props.getDragons();
+      if (!this.props.list.length) this.props.getDragons();
     }
 
     render() {

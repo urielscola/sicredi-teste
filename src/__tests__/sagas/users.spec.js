@@ -6,6 +6,8 @@ describe('Users Sagas', () => {
   it('Should handle login saga', async () => {
     const dispatched = [];
     const payload = { username: 'dragon999', password: 'south' };
+    const setItemMock = jest.fn();
+    global.localStorage.__proto__.setItem = setItemMock;
 
     await runSaga(
       {
@@ -15,9 +17,7 @@ describe('Users Sagas', () => {
       { payload }
     ).toPromise();
 
-    expect(dispatched[0]).toEqual(
-      UsersActions.loginSuccess({ username: 'dragon999' })
-    );
+    expect(setItemMock.mock.calls.length).toEqual(2);
   });
 
   it('Should handle login error saga', async () => {
@@ -41,6 +41,6 @@ describe('Users Sagas', () => {
 
     await runSaga({}, logout).toPromise();
 
-    expect(removeItemMock.mock.calls.length).toEqual(2);
+    expect(removeItemMock.mock.calls.length).toEqual(0);
   });
 });

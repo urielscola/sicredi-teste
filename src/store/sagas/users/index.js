@@ -7,7 +7,6 @@ export function* login({ payload }) {
   const { username, password } = payload;
   try {
     yield call(UserService.login, { username, password });
-    yield put(UserActions.loginSuccess({ username }));
     yield setSession({ username });
     window.location.href = '/';
   } catch (err) {
