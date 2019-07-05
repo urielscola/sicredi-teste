@@ -25,6 +25,12 @@ yarn test
 
 Testes unitários feitos com as ferramentas Jest e Enzyme.
 
+# Para verificar a cobertura de testes
+
+```
+yarn coverage
+```
+
 # Para realizar deploy
 
 ```
